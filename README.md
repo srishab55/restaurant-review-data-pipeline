@@ -5,32 +5,49 @@ This repository contains two modular data pipelines for processing restaurant an
 ## Project Structure
 
 ```project/
-│
-├── dags/                            # Airflow DAGs
-│   ├── restaurant_transformation_dag.py
-│   └── reviews_ingestion_dag.py
-│
-├── src/
-│   ├── transformation/transform_restaurants.py
-│   └── ingestion/reviews_ingestion.py
-│
-├── scripts/
+├── adhoc_scripts
+│   ├── json_chunks_to_parquet.py
 │   ├── json_to_chunks.py
-│   └── json_chunks_to_parquet.py
-│
-├── config/
-│   └── db_config.py                 # Optional DB config
-│
-├── data/
-│   ├── raw/                         # Raw JSON and chunks
-│   ├── processed/                   # Flattened restaurant parquet chunks
-│   ├── interim/reviews/            # Dumped parquet files from reviews
-│   ├── transformed/                # Cleaned restaurant output
-│   └── temporary/last_processed.txt  # Tracks last timestamp for review ingestion
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
+│   └── sqlite_to_mysql_dump.py
+├── config
+│   ├── __init__.py
+│   ├── config.py
+│   └── db_config.py
+├── dags
+│   ├── restaurant_etl_dag.py
+│   └── reviews_sql_data_dag.py
+├── docker-compose.yml
+├── init
+│   ├── 01-create-reviews-table.sql
+│   └── 01-init-user.sql
+├── metrics
+├── restaurant_pipeline.sh
+├── setup.sh
+├── src
+│   ├── __init__.py
+│   ├── config_loader.py
+│   ├── constants.py
+│   ├── ingestion
+│   │   ├── __init__.py
+│   │   └── mysql_to_local_dump.py
+│   ├── pipeline
+│   │   ├── __init__.py
+│   │   └── run_pipeline.py
+│   └── transformation
+│       ├── __init__.py
+│       ├── transform_restaurants.py
+│       └── transform_reviews.py
+├── tests
+│   ├── __init__.py
+│   ├── test_transform_restaurants.py
+│   └── test_transform_reviews.py
+├── warehouse
+│   ├── restaurants.ddl.sql
+│   ├── restaurants.insert.sql
+│   ├── reviews.ddl.sql
+│   ├── reviews.insert.sql
+│   └── schema.sql
+└── webserver_config.py
 ```
 
 ## Prerequisites
