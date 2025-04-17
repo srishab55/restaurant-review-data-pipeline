@@ -2,6 +2,14 @@
 
 This repository contains two modular data pipelines for processing restaurant and review data using Apache Spark, MySQL, and Airflow.
 
+
+## Architecture Diagram for Pipeline
+
+![Untitled Diagram drawio](https://github.com/user-attachments/assets/ba64f843-b76d-479c-9aef-3e9026d0a9c6)
+
+
+
+
 ## Project Structure
 
 ```project/
