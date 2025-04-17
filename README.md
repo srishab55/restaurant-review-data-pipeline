@@ -1,8 +1,8 @@
-# 🍽️ Restaurant & Reviews Data Pipeline
+#  Restaurant & Reviews Data Pipeline
 
 This repository contains two modular data pipelines for processing restaurant and review data using Apache Spark, MySQL, and Airflow.
 
-## 📁 Project Structure
+## Project Structure
 
 ```project/
 │
