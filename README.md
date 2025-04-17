@@ -149,6 +149,23 @@ This project comprises two separate ETL pipelines built to process **Restaurant 
 
 ---
 
+## Performance Metrics
+
+- **Chunked Processing**: Reduced memory overhead and improved runtime stability by splitting large JSON datasets into smaller, manageable chunks (~100MB each).
+- **Partitioned Writes**: Writing data with partitioning (`date={}/hr={}`) improved query performance during downstream analysis.
+- **Spark Config Optimizations**: Jobs tuned using configuration parameters such as dynamic allocation, executor memory limits, and batch size tuning.
+- **Batch Ingestion**: Reviews ingestion was handled in batches of 10,000 rows to optimize MySQL-to-Disk simulation latency.
+
+---
+
+## Error Handling
+
+- **Try-Except Blocks**: Wrapped critical operations such as database connections, file reads, and writes with error handling to avoid pipeline crashes.
+- **Logging**: Enabled structured logging throughout scripts to capture warnings, errors, and processing status. Helpful in debugging and monitoring.
+- **Graceful Shutdown**: Resources like database cursors and connections are closed in `finally` blocks to ensure cleanup after failures.
+- **Airflow Alerts** (Not executed here): Airflow DAGs can be extended with email or Slack notifications on task failures for better monitoring in production environments.
+
+
 ## Potential Improvements
 
 - **True Real-Time Streaming**: Integrating Kafka or other streaming platforms would allow for genuine real-time ingestion and processing.
@@ -158,5 +175,3 @@ This project comprises two separate ETL pipelines built to process **Restaurant 
 - **Dockerization & CI/CD**: While Docker is used for services like MySQL and Airflow, a fully containerized execution pipeline and CI/CD integration would make deployment more seamless.
 
 ---
-
-These pipelines form a solid foundation for ETL on local or cloud infrastructure, with flexibility to scale or optimize as needed.
