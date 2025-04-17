@@ -67,8 +67,9 @@ source venv/bin/activate
 ```
 ### 2. Install requirements 
 
-cd ~/restaurant_data_pipeline/
+```cd ~/restaurant_data_pipeline/
 pip install -r requirements.txt
+```
 
 ### 3. Download the dataset
 
