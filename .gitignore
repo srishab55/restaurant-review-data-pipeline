@@ -45,3 +45,5 @@ data/transformed/
 airflow.cfg
 airflow-webserver.pid
 airflow-scheduler.pid
+webserver_config.py
+setup.sh
