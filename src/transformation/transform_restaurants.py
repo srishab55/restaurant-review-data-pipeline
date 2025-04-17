@@ -82,8 +82,8 @@ def clean_data(df: DataFrame) -> DataFrame:
 
         df_cleaned = df_cleaned.dropDuplicates(["restaurant_id"])
 
-        # Clean and transform cost_text and other columns
-        df_cleaned = df_cleaned.withColumn("cost_numeric",
+        # Clean and transform cost_text (as it is string and unusable) and other columns
+        df_cleaned = df_cleaned.withColumn("cost_without_currency",
             when(col("cost_text").rlike("₹\\s*\\d+"),
                 regexp_replace(col("cost_text"), "[^\\d.]", "").cast("double"))
             .otherwise(None))

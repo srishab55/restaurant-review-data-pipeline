@@ -35,6 +35,7 @@ def read_last_processed():
         cursor.execute("SELECT MIN(Time) FROM Reviews where extract( year from from_unixtime(time)) = 2012")
         result = cursor.fetchone()[0]
         conn.close()
+        print(f"Fallback to earliest Time value: {result}")
         return result if result else int(datetime.now().timestamp()) - 3600
     except Exception as e:
         print(f"Error fetching fallback timestamp: {e}")
@@ -57,6 +58,7 @@ def fetch_and_dump(start_ts: int):
     """
     df = pd.read_sql(query, conn, params=(start_ts, end_ts))
     conn.close()
+
 
     if df.empty:
         print("No new records found.")

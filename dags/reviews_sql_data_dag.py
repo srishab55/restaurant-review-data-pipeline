@@ -3,7 +3,6 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from pathlib import Path
 import sys
-
 # Adjust the path to your ingestion script if it's in a different directory
 INGESTION_SCRIPT_PATH = Path(__file__).resolve().parent.parent / "scripts" / "reviews_ingestion.py"
 sys.path.insert(0, str(INGESTION_SCRIPT_PATH.parent))
