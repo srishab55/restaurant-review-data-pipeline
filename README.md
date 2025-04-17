@@ -61,8 +61,7 @@ curl -L -o ~/project_directory/restaurant_data_pipeline/data/raw/swiggy-restaura
 ```
 ### 4. Run full Pipeline on the dataset
 
-```bash restaurant_pipeline.sh
-```
+```bash restaurant_pipeline.sh```
 
 
 ## - Step-by-Step Pipeline Execution (Reviews Pipeline via Airflow)
