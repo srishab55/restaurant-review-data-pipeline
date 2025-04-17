@@ -118,3 +118,45 @@ Go to UI and hit that play button
 ```
 python src/transformation/transform_reviews.py
 ```
+
+
+
+## Pipeline Design
+
+This project comprises two separate ETL pipelines built to process **Restaurant Metadata** and **Restaurant Reviews**. Both pipelines are structured with modularity and scalability in mind, allowing for better maintenance, easier debugging, and future expansion.
+
+### Architecture Overview
+
+- **Extraction Layer**: 
+  - For the **restaurant pipeline**, large static JSON files are read and chunked to handle memory limitations on local machines.
+  - For the **reviews pipeline**, data is initially extracted from a SQLite database and loaded into a MySQL database using a one-time script. Airflow then simulates real-time extraction by querying MySQL and writing batches to disk.
+
+- **Transformation Layer**:
+  - Applies data cleaning, normalization, formatting, and structuring.
+  - For both pipelines, PySpark jobs handle complex transformations, including null handling, text normalization, data type parsing, and field standardization.
+
+- **Load Layer**:
+  - Cleaned and transformed data is written to Parquet format in a partitioned structure (e.g., `date={}/hr={}`) for downstream consumption.
+  - The directory structure supports predicate pushdown and optimized querying in analytical tools or data warehouses.
+
+---
+
+## Assumptions
+
+- The restaurant data is large and requires chunked processing for execution as Json is less used for data pipelines and even if they are used it will have to be in smaller chunks otherwise the read overhead will exceed the memory.
+- Reviews data is simulated to mimic streaming ingestion, it is assumed that the actual data will be in much larger size and pipeline is design accordingly.
+- All data resides in local directories and are accessible and is used in batch mode to simulate streaming behavior.
+
+---
+
+## Potential Improvements
+
+- **True Real-Time Streaming**: Integrating Kafka or other streaming platforms would allow for genuine real-time ingestion and processing.
+- **Schema Registry**: Schema evolution handling is minimal. Integrating tools like Apache Avro or a schema registry could enforce schema consistency.
+- **Data Quality Checks**: Currently, there are no explicit data validation rules or metrics tracking. Incorporating tools like Great Expectations or custom data validation frameworks would improve pipeline robustness.
+- **Orchestration Abstraction**: A unified DAG for both pipelines could be created with better modular operators and conditional task execution.
+- **Dockerization & CI/CD**: While Docker is used for services like MySQL and Airflow, a fully containerized execution pipeline and CI/CD integration would make deployment more seamless.
+
+---
+
+These pipelines form a solid foundation for ETL on local or cloud infrastructure, with flexibility to scale or optimize as needed.
