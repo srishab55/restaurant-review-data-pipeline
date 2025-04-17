@@ -1,0 +1,12 @@
+# Core packages
+
+# MySQL client connector
+pymysql
+pyspark
+# Data handling
+pandas
+pyarrow
+
+# Optional: Only if you use these features
+sqlalchemy  # Usually comes with Airflow, needed for SQL operations
+cryptography  # Secure connections, usually pre-installed
