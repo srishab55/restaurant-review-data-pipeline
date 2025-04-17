@@ -4,7 +4,7 @@ This repository contains two modular data pipelines for processing restaurant an
 
 ## 📁 Project Structure
 
-project/
+```project/
 │
 ├── dags/                            # Airflow DAGs
 │   ├── restaurant_transformation_dag.py
@@ -31,6 +31,7 @@ project/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
 ## Prerequisites
 
@@ -54,15 +55,14 @@ pip install -r requirements.txt
 
 ### 3. Download the dataset
 
-#!/bin/bash
+```#!/bin/bash
 curl -L -o ~/project_directory/restaurant_data_pipeline/data/raw/swiggy-restaurants-dataset.zip\
   https://www.kaggle.com/api/v1/datasets/download/ashishjangra27/swiggy-restaurants-dataset
-
+```
 ### 4. Run full Pipeline on the dataset
 
-bash restaurant_pipeline.sh
-
-### 5. Run full Pipeline on the dataset
+```bash restaurant_pipeline.sh
+```
 
 
 ## - Step-by-Step Pipeline Execution (Reviews Pipeline via Airflow)
@@ -75,29 +75,30 @@ source venv/bin/activate
 ```
 
 ### 2. Install requirements 
-
+```
 cd ~/restaurant_data_pipeline/
 pip install -r requirements.txt
 
-
+```
 ### 3. Download the dataset
-
+```
 #!/bin/bash
 curl -L -o ~/restaurant_data_pipeline/data/raw/data.zip\
   https://www.kaggle.com/api/v1/datasets/download/ajaysh/amazon-fine-food-reviews
-
+```
 ### 4. Download the dataset
-
+```
 docker-compose up -d
-
+```
 ### 5. Run One time script to load data into MYsql Server
-
+```
 python adhoc_scripts/sqlite_to_mysql.py
-
+```
 ### 6. Trigger Dag for generating reviews data as a stream
 
 Go to UI and hit that play button
 
 ### 7. Run tranformation and data cleaning script
-
+```
 python src/transformation/transform_reviews.py
+```
