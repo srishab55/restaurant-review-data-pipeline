@@ -80,6 +80,10 @@ curl -L -o ~/project_directory/restaurant_data_pipeline/data/raw/swiggy-restaura
 
 ```bash restaurant_pipeline.sh```
 
+### 5. Add cron job for scheduling
+```
+0 2 * * * /full/path/to/run_reviews_pipeline.sh >> /full/path/to/logs/pipeline.log 2>&1
+```
 
 ## - Pipeline 2 : Step-by-Step Pipeline Execution (Reviews Pipeline via Airflow)
 
