@@ -40,7 +40,7 @@ This repository contains two modular data pipelines for processing restaurant an
 - Apache Airflow
 - MySQL (with review data pre-loaded)
 
-## - Step-by-Step Pipeline Execution (Restaurant Pipeline via Shell Script)
+## Pipeline 1: Step-by-Step Pipeline Execution (Restaurant Pipeline via Shell Script)
 
 ### 1. Create a Python Virtual Environment
 
@@ -64,7 +64,7 @@ curl -L -o ~/project_directory/restaurant_data_pipeline/data/raw/swiggy-restaura
 ```bash restaurant_pipeline.sh```
 
 
-## - Step-by-Step Pipeline Execution (Reviews Pipeline via Airflow)
+## - Pipeline 2 : Step-by-Step Pipeline Execution (Reviews Pipeline via Airflow)
 
 ### 1. Create a Python Virtual Environment
 
